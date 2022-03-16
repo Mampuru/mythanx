@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 
-class TextfieldWidget extends StatelessWidget {
+class PrimaryTextfield extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final TextInputType textInputType;
 
-  const TextfieldWidget({
+  const PrimaryTextfield({
     Key key,
     @required this.controller,
     @required this.label,
