@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../constants.dart';
+import 'bottom_nav_views/profile_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key key}) : super(key: key);
@@ -11,19 +11,27 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   var currentIndex = 0;
-  final screens = const [
-    Center(child: Text('Home',style: TextStyle(fontSize: 60),),),
-    Center(child: Text('Notifications',style: TextStyle(fontSize: 60),),),
-    Center(child: Text('Profile',style: TextStyle(fontSize: 60),),),
+  List<Widget> screens =  <Widget>[
+    const Center(child: Text('Home',style: TextStyle(fontSize: 60),),),
+    const Center(child: Text('Notifications',style: TextStyle(fontSize: 60),),),
+    const ProfileView(),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
-          leading: null,
+          leading: const Icon(Icons.build_circle_outlined,size:30,color: Colors.white,),
           title: const Text('My ThanX'),
+          centerTitle: true,
         ),
         body: screens[currentIndex],
       bottomNavigationBar: buildBottomNav(),
