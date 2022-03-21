@@ -68,11 +68,11 @@ class _SignUpViewState extends State<SignUpView> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16,8,16,8),
-                child: PrimaryTextfield(controller: passwordController, label: "Password"),
+                child: PrimaryTextfield(controller: passwordController, label: "Password",obscureText: true,),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16,8,16,8),
-                child: PrimaryTextfield(controller: passwordConfirmController, label: "Confirm Password"),
+                child: PrimaryTextfield(controller: passwordConfirmController, label: "Confirm Password",obscureText: true,),
               ),
               const SizedBox(height: 30.0,),
               PrimaryButton(buttonName: "Sign Up", onTap: () async {

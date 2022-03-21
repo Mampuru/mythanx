@@ -6,12 +6,14 @@ class PrimaryTextfield extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final TextInputType textInputType;
+  final bool obscureText;
 
   const PrimaryTextfield({
     Key key,
     @required this.controller,
     @required this.label,
     this.textInputType,
+    this.obscureText,
   }) : super(key: key);
 
   @override
@@ -21,6 +23,7 @@ class PrimaryTextfield extends StatelessWidget {
     enableSuggestions: false,
     keyboardType: (textInputType == null) ? TextInputType.text : textInputType,
     controller: controller,
+    obscureText: (obscureText == null) ? false:true,
     style: const TextStyle(
       color: Colors.black,
       fontSize: 20,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mythanx/api/api_service.dart';
 import 'package:mythanx/views/auth/sign_up_view.dart';
 import 'package:mythanx/views/widgets/primary_button.dart';
 import 'package:mythanx/views/widgets/primary_textfield.dart';
@@ -38,7 +39,7 @@ class _SignInViewState extends State<SignInView> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: PrimaryTextfield(controller: passwordController, label: "Password"),
+                  child: PrimaryTextfield(controller: passwordController, label: "Password",obscureText: true,),
                 ),
                 InkWell(
                   onTap: () async {
@@ -51,7 +52,12 @@ class _SignInViewState extends State<SignInView> {
                     )),
                 const SizedBox(height: 30.0,),
                 PrimaryButton(buttonName: "Sign In", onTap: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()));
+                  await login(userController.text, passwordController.text).then((result) => {
+                  logger.i(result),
+                  if(result != null){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()))
+                    }
+                  });
                 }),
                 const SizedBox(height: 50.0,),
                 Row(
