@@ -19,3 +19,4 @@ const kWarningColor = Color(0xFFFFB114);
 
 //Image
 const logoPath = "assets/icons/mythanx1024.png";
+const userIconPath = "assets/icons/userIcon.png";
