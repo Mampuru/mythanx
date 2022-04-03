@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mythanx/views/bottom_nav_views/edit_profile_view.dart';
+import 'package:mythanx/views/independent_views/edit_profile_view.dart';
+import 'package:mythanx/views/bottom_nav_views/follow_view.dart';
+import 'package:mythanx/views/independent_views/follow_list_view.dart';
 import 'package:mythanx/views/widgets/primary_button_outlined.dart';
 
 import '../../constants.dart';
@@ -43,9 +45,17 @@ class _ProfileViewState extends State<ProfileView> {
         const Divider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
-            Text('15 followers'),
-            Text('156 following'),
+          children: [
+            InkWell(
+              onTap: () async {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowListView(title: "Followers",)));
+              },
+                child: const Text('15 followers',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16))),
+            InkWell(
+                onTap: () async {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowListView(title: "Following",)));
+                },
+                child: const Text('156 following',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16))),
           ],
         ),
         const Divider(),
