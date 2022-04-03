@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
-import 'bottom_nav_views/profile_view.dart';
+import 'package:mythanx/views/bottom_nav_views/follow_view.dart';
+import 'package:mythanx/views/bottom_nav_views/search_view.dart';
+import '../../constants.dart';
+import '../bottom_nav_views/profile_view.dart';
+import '../bottom_nav_views/wallet_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key key}) : super(key: key);
@@ -12,8 +15,9 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   var currentIndex = 0;
   List<Widget> screens =  <Widget>[
-    const Center(child: Text('Home',style: TextStyle(fontSize: 60),),),
-    const Center(child: Text('Notifications',style: TextStyle(fontSize: 60),),),
+    const FollowView(),
+    const SearchView(),
+    const WalletView(),
     const ProfileView(),
   ];
 
@@ -44,17 +48,22 @@ class _HomeViewState extends State<HomeView> {
       onTap: (index) => setState(() => currentIndex = index),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.home_outlined),
           label: 'Home',
           backgroundColor:kPrimaryColor,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.notifications_none_outlined),
-          label: 'Notifications',
+          icon: Icon(Icons.search),
+          label: 'Search',
           backgroundColor:kPrimaryColor,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle),
+          icon: Icon(Icons.account_balance_wallet_outlined),
+          label: 'Wallet',
+          backgroundColor:kPrimaryColor,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle_outlined),
           label: 'Profile',
           backgroundColor:kPrimaryColor,
         ),

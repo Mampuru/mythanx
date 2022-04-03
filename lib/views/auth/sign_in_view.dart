@@ -5,7 +5,7 @@ import 'package:mythanx/views/widgets/primary_button.dart';
 import 'package:mythanx/views/widgets/primary_textfield.dart';
 
 import '../../constants.dart';
-import '../home_view.dart';
+import '../independent_views/home_view.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({Key key}) : super(key: key);
