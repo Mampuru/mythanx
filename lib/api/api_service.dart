@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:mythanx/data/dto/country_dto.dart';
 import 'package:mythanx/data/dto/user_dto.dart';
 import 'package:mythanx/data/mapper/user_model.dart';
 import 'package:http/http.dart' as http;
@@ -37,15 +38,14 @@ Future<User> register(UserDto user) async {
 Future<User> login(String username,password) async {
   try {
     final http.Response response = await http.post(
-        Uri.parse(signUp),
+        Uri.parse(signIn),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'
         },
         body: jsonEncode(
             <String, String>{'username': username, 'password': password})
         );
-
-        if (response.statusCode == 201) {
+        if (response.statusCode == 200) {
           return userFromJson(response.body);
     } else if (response.statusCode == 401) {
   PrimaryToast().displayToast("Unauthorized", kErrorColor);
@@ -67,7 +67,7 @@ Future<UserProfile> getUser(String apiKey) async {
           'Content-Type': 'application/json; charset=UTF-8'
         });
 
-        if (response.statusCode == 201) {
+        if (response.statusCode == 200) {
           return userProfileFromJson(response.body);
     } else if (response.statusCode == 401) {
   PrimaryToast().displayToast("Unauthorized", kErrorColor);
@@ -76,6 +76,27 @@ Future<UserProfile> getUser(String apiKey) async {
   } on SocketException {
   PrimaryToast().displayToast("No Internet connection", kInfoColor);
   throw Exception('No Internet connection');
+  }
+  return null;
+}
+
+Future<CountryDto> country() async {
+  try {
+    final http.Response response = await http.get(
+        Uri.parse(getCountry),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+    );
+    if (response.statusCode == 200) {
+      return countryDtoFromJson(response.body);
+    } else if (response.statusCode == 401) {
+      PrimaryToast().displayToast("Unauthorized", kErrorColor);
+      throw Exception('Unauthorized Access: Failed to send location');
+    }
+  } on SocketException {
+    PrimaryToast().displayToast("No Internet connection", kInfoColor);
+    throw Exception('No Internet connection');
   }
   return null;
 }
