@@ -53,7 +53,6 @@ class _SignInViewState extends State<SignInView> {
                 const SizedBox(height: 30.0,),
                 PrimaryButton(buttonName: "Sign In", onTap: () async {
                   await login(userController.text, passwordController.text).then((result) => {
-                  logger.i(result),
                   if(result != null){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()))
                     }
