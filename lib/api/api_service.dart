@@ -80,7 +80,7 @@ Future<UserProfile> getUser(String apiKey) async {
   return null;
 }
 
-Future<CountryDto> country() async {
+Future<CountryDto> getCountryList() async {
   try {
     final http.Response response = await http.get(
         Uri.parse(getCountry),

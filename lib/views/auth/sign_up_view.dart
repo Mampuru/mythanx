@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mythanx/api/api_service.dart';
+import 'package:mythanx/data/dto/country_dto.dart';
+import 'package:mythanx/data/dto/user_dto.dart';
 import 'package:mythanx/views/auth/sign_in_view.dart';
 import 'package:mythanx/views/widgets/primary_button.dart';
 import 'package:mythanx/views/widgets/primary_textfield.dart';
@@ -15,6 +18,9 @@ var _country = [
   "EU",
   "US",
 ];
+
+var _countryMap = {};
+
 class SignUpView extends StatefulWidget {
   const SignUpView({Key key}) : super(key: key);
 
@@ -31,7 +37,14 @@ class _SignUpViewState extends State<SignUpView> {
   final countryController = TextEditingController();
   final emailController = TextEditingController();
   String country;
+  String countryCode;
   ContactOption _character = ContactOption.phone;
+
+  @override
+  void initState() {
+    getCounty();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +142,21 @@ class _SignUpViewState extends State<SignUpView> {
               ),
               const SizedBox(height: 30.0,),
               PrimaryButton(buttonName: "Sign Up", onTap: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()));
+                var user = UserDto(
+                    name: nameController.text,
+                    username: userController.text,
+                    country: countryCode,
+                    email: emailController.text.trim().toLowerCase(),
+                    phone: phoneController.text,
+                    password: passwordController.text
+                );
+
+                await register(user).then((result) => {
+                  if(result.data.token != null){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView())),
+                  }
+                });
+
               }),
               const SizedBox(height: 40.0,),
               Row(
@@ -168,7 +195,10 @@ class _SignUpViewState extends State<SignUpView> {
           setState(() {
             country = value;
           });
+          setCountryCode(value);
+          logger.i(countryCode);
         },
+
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: (value) => value == null ? 'Please select your country' : null,
         decoration: const InputDecoration(
@@ -191,5 +221,44 @@ class _SignUpViewState extends State<SignUpView> {
         iconSize: 30.0,
         iconEnabledColor: kBodyTextColor,
       ));
+
+
+  Future<List<dynamic>> getCounty() async {
+    _country.clear();
+    CountryDto result = await getCountryList();
+    countryNameList(result.data);
+    countryList(result.data);
+    if (_country == null) {
+      return null;
+    }
+    setState(() {
+      _country = _country;
+    });
+    return _country;
+  }
+
+  void setCountryCode(String country) {
+    if (_countryMap.isNotEmpty) {
+      setState(() {
+        countryCode = _countryMap[country];
+      });
+      logger.i(countryCode);
+    }
+
+  }
+
+  void countryList(List<dynamic> itemList) {
+    for (var i = 0; i < itemList.length; i++){
+      logger.i(itemList[i].name);
+      _countryMap[itemList[i].name] = itemList[i].code;
+    }
+  }
+
+  void countryNameList(List<dynamic> itemList) {
+    for (var i = 0; i < itemList.length; i++){
+      logger.i(itemList[i].name);
+      _country.add(itemList[i].name);
+    }
+  }
 }
 
