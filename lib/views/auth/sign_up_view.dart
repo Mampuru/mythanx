@@ -3,7 +3,7 @@ import 'package:mythanx/api/api_service.dart';
 import 'package:mythanx/data/dto/country_dto.dart';
 import 'package:mythanx/data/dto/user_dto.dart';
 import 'package:mythanx/views/auth/sign_in_view.dart';
-import 'package:mythanx/views/widgets/primary_button.dart';
+import 'package:mythanx/views/widgets/primary_loading_button.dart';
 import 'package:mythanx/views/widgets/primary_textfield.dart';
 
 import '../../constants.dart';
@@ -39,6 +39,7 @@ class _SignUpViewState extends State<SignUpView> {
   String country;
   String countryCode;
   ContactOption _character = ContactOption.phone;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -141,7 +142,11 @@ class _SignUpViewState extends State<SignUpView> {
                 child: PrimaryTextfield(controller: passwordConfirmController, label: "Confirm Password",obscureText: true,),
               ),
               const SizedBox(height: 30.0,),
-              PrimaryButton(buttonName: "Sign Up", onTap: () async {
+              PrimaryLoadingButton(buttonName: "Sign Up",isProcessing: isLoading,onTap: () async {
+                setState(() {
+                  isLoading = true;
+                });
+
                 var user = UserDto(
                     name: nameController.text,
                     username: userController.text,
@@ -152,12 +157,19 @@ class _SignUpViewState extends State<SignUpView> {
                 );
 
                 await register(user).then((result) => {
+                  logger.e(result),
                   if(result.data.token != null){
+                    setState(() {
+                      isLoading = false;
+                    }),
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView())),
+                  }else{
+                    setState(() {
+                      isLoading = false;
+                    }),
                   }
                 });
-
-              }),
+              },),
               const SizedBox(height: 40.0,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -247,6 +259,7 @@ class _SignUpViewState extends State<SignUpView> {
 
   }
 
+  //Creating a map that consist of
   void countryList(List<dynamic> itemList) {
     for (var i = 0; i < itemList.length; i++){
       logger.i(itemList[i].name);
@@ -254,6 +267,7 @@ class _SignUpViewState extends State<SignUpView> {
     }
   }
 
+  //Create list of counties to display on the drop down
   void countryNameList(List<dynamic> itemList) {
     for (var i = 0; i < itemList.length; i++){
       logger.i(itemList[i].name);

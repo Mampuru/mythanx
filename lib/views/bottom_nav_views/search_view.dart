@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mythanx/views/bottom_nav_views/follow_view.dart';
 import 'package:mythanx/views/widgets/primary_textfield.dart';
 
-import '../../constants.dart';
-
 class SearchView extends StatefulWidget {
   const SearchView({Key key}) : super(key: key);
 

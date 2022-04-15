@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mythanx/views/independent_views/edit_profile_view.dart';
-import 'package:mythanx/views/bottom_nav_views/follow_view.dart';
 import 'package:mythanx/views/independent_views/follow_list_view.dart';
 import 'package:mythanx/views/widgets/primary_button_outlined.dart';
 

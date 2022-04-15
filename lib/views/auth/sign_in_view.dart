@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mythanx/api/api_service.dart';
 import 'package:mythanx/views/auth/sign_up_view.dart';
-import 'package:mythanx/views/widgets/primary_button.dart';
+import 'package:mythanx/views/widgets/primary_loading_button.dart';
 import 'package:mythanx/views/widgets/primary_textfield.dart';
 
 import '../../constants.dart';
@@ -17,6 +17,7 @@ class SignInView extends StatefulWidget {
 class _SignInViewState extends State<SignInView> {
   final userController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +52,24 @@ class _SignInViewState extends State<SignInView> {
                         style:TextStyle(color: kTertiaryColor,fontWeight: FontWeight.bold),),
                     )),
                 const SizedBox(height: 30.0,),
-                PrimaryButton(buttonName: "Sign In", onTap: () async {
-                  await login(userController.text, passwordController.text).then((result) => {
-                  if(result != null){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()))
-                    }
-                  });
-                }),
+                 PrimaryLoadingButton(buttonName: "Sign In",isProcessing: isLoading,onTap: () async {
+                   setState(() {
+                     isLoading = true;
+                   });
+                   await login(userController.text, passwordController.text).then((result) => {
+                     if(result != null){
+                       setState(() {
+                        isLoading = false;
+                      }),
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()))
+                     }else {
+                       setState(() {
+                         isLoading = false;
+                       }),
+                     }
+                   });
+
+               },),
                 const SizedBox(height: 50.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
