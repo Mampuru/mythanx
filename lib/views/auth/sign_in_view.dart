@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mythanx/api/api_service.dart';
+import 'package:mythanx/helpers/shared_prefs.dart';
 import 'package:mythanx/views/auth/sign_up_view.dart';
 import 'package:mythanx/views/widgets/primary_loading_button.dart';
 import 'package:mythanx/views/widgets/primary_textfield.dart';
+import 'package:mythanx/views/widgets/primary_toast.dart';
 
 import '../../constants.dart';
 import '../independent_views/home_view.dart';
@@ -57,7 +59,11 @@ class _SignInViewState extends State<SignInView> {
                      isLoading = true;
                    });
                    await login(userController.text, passwordController.text).then((result) => {
+                     logger.i(result.message),
                      if(result != null){
+                       setUserDetails(result),
+                       setAuth(true),
+                       setAuthToken(result.data.token),
                        setState(() {
                         isLoading = false;
                       }),
@@ -66,6 +72,7 @@ class _SignInViewState extends State<SignInView> {
                        setState(() {
                          isLoading = false;
                        }),
+                       PrimaryToast().displayToast("Invalid credentials", kErrorColor)
                      }
                    });
 
