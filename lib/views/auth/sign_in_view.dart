@@ -59,21 +59,21 @@ class _SignInViewState extends State<SignInView> {
                      isLoading = true;
                    });
                    await login(userController.text, passwordController.text).then((result) => {
-                     logger.i(result.message),
-                     if(result != null){
-                       setUserDetails(result),
-                       setAuth(true),
-                       setAuthToken(result.data.token),
-                       setState(() {
-                        isLoading = false;
-                      }),
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()))
-                     }else {
-                       setState(() {
-                         isLoading = false;
-                       }),
-                       PrimaryToast().displayToast("Invalid credentials", kErrorColor)
-                     }
+                       if(result != null){
+                         setUserDetails(result),
+                         setAuth(true),
+                         setAuthToken(result.data.token),
+                         setState(() {
+                           isLoading = false;
+                         }),
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()))
+                       }else {
+                         setState(() {
+                           isLoading = false;
+                         }),
+                         PrimaryToast().displayToast("Invalid credentials", kErrorColor)
+                       }
+                     // }
                    });
 
                },),

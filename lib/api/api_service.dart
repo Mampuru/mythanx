@@ -25,8 +25,8 @@ Future<User> register(UserDto user) async {
     if (response.statusCode == 201) {
        return userFromJson(response.body);
     } else if (response.statusCode == 401) {
-      PrimaryToast().displayToast("Unauthorized", kErrorColor);
-      throw Exception('Unauthorized Access: Failed to send location');
+      PrimaryToast().displayToast("Failed to send user details", kErrorColor);
+      return null;
     }
   } on SocketException {
     PrimaryToast().displayToast("No Internet connection", kInfoColor);
@@ -47,9 +47,9 @@ Future<User> login(String username,password) async {
         );
         if (response.statusCode == 200) {
           return userFromJson(response.body);
-    } else if (response.statusCode == 401) {
-  PrimaryToast().displayToast("Unauthorized", kErrorColor);
-  throw Exception('Unauthorized Access: Failed to send location');
+      } else if (response.statusCode == 401) {
+      PrimaryToast().displayToast("Unauthorized", kErrorColor);
+      return null;
   }
   } on SocketException {
   PrimaryToast().displayToast("No Internet connection", kInfoColor);
@@ -71,7 +71,7 @@ Future<UserProfile> getUser(String apiKey) async {
           return userProfileFromJson(response.body);
     } else if (response.statusCode == 401) {
   PrimaryToast().displayToast("Unauthorized", kErrorColor);
-  throw Exception('Unauthorized Access: Failed to send location');
+  throw Exception('Unauthorized Access: Failed to get user');
   }
   } on SocketException {
   PrimaryToast().displayToast("No Internet connection", kInfoColor);
@@ -92,7 +92,7 @@ Future<CountryDto> getCountryList() async {
       return countryDtoFromJson(response.body);
     } else if (response.statusCode == 401) {
       PrimaryToast().displayToast("Unauthorized", kErrorColor);
-      throw Exception('Unauthorized Access: Failed to send location');
+      throw Exception('Unauthorized Access: Failed to get country');
     }
   } on SocketException {
     PrimaryToast().displayToast("No Internet connection", kInfoColor);

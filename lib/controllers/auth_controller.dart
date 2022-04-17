@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+import 'package:mythanx/data/mapper/user_model.dart';
 import 'package:mythanx/helpers/shared_prefs.dart';
 
 class AuthController extends GetxController {
   var authToken = " ".obs;
   var hasToken = false.obs;
+  User userDetails;
 
   @override
   void onInit() {
@@ -13,6 +15,7 @@ class AuthController extends GetxController {
 
   clearAuthToken() {
     authToken = " ".obs;
+    userDetails = null;
   }
 
   void getToken() async {
@@ -22,10 +25,8 @@ class AuthController extends GetxController {
       }
     }
 
-  // void getUserData() async {
-  //   Map<String, dynamic> result = await getLoggedInUser(await getAuthToken());
-  //   email.value = result["me"]["email"];
-  //   role.value  =  result["me"]["lastName"];
-  //   name.value =  result["me"]["firstName"];
-  // }
+  Future<User> getUserData() async {
+    userDetails = await getUserDetails();
+    return userDetails;
+  }
 }
