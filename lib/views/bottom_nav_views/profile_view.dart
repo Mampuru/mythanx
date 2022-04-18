@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mythanx/controllers/auth_controller.dart';
 import 'package:mythanx/views/independent_views/edit_profile_view.dart';
 import 'package:mythanx/views/independent_views/follow_list_view.dart';
 import 'package:mythanx/views/widgets/primary_button_outlined.dart';
@@ -13,6 +15,13 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  final AuthController authController = Get.put(AuthController());
+
+  @override
+  void initState() {
+    authController.getUserData();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context){
     return Column(
@@ -24,7 +33,7 @@ class _ProfileViewState extends State<ProfileView> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Username',style: TextStyle(fontSize: 25),),
+                Text(authController.userDetails.data.user.username,style: const TextStyle(fontSize: 25),),
                 const SizedBox(height: 10.0,),
                 PrimaryButtonOutlined(buttonName: "Edit Profile",width: 150,onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfileView()));
@@ -33,13 +42,13 @@ class _ProfileViewState extends State<ProfileView> {
             )
           ],
         ),
-        const Padding(
-          padding: EdgeInsets.only(left: 16.0),
-          child: Text('Name Surname',style: TextStyle(fontWeight: FontWeight.bold),),
+       Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child: Text(authController.userDetails.data.user.name,style: const TextStyle(fontWeight: FontWeight.bold),),
         ),
-        const Padding(
-          padding: EdgeInsets.only(left:16.0),
-          child: Text('Bio'),
+        Padding(
+          padding: const EdgeInsets.only(left:16.0),
+          child: Text('Country: ${authController.userDetails.data.user.country.name}'),
         ),
         const Divider(),
         Row(
@@ -49,12 +58,12 @@ class _ProfileViewState extends State<ProfileView> {
               onTap: () async {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowListView(title: "Followers",)));
               },
-                child: const Text('15 followers',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16))),
+                child: Text('${authController.userDetails.data.user.metadata.presence.followers} followers',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16))),
             InkWell(
                 onTap: () async {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowListView(title: "Following",)));
                 },
-                child: const Text('156 following',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16))),
+                child: Text('${authController.userDetails.data.user.metadata.presence.following} following',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16))),
           ],
         ),
         const Divider(),
