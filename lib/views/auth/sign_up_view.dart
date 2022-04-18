@@ -12,13 +12,7 @@ import '../independent_views/home_view.dart';
 
 enum ContactOption { phone, email }
 
-var _country = [
-  "ZA",
-  "ZW",
-  "ZB",
-  "EU",
-  "US",
-];
+var _country = [];
 
 var _countryMap = {};
 
