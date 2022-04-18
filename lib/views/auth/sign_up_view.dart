@@ -41,6 +41,8 @@ class _SignUpViewState extends State<SignUpView> {
   String countryCode;
   ContactOption _character = ContactOption.phone;
   bool isLoading = false;
+  bool obscureText = true;
+  bool passwordError = false;
 
   @override
   void initState() {
@@ -136,12 +138,14 @@ class _SignUpViewState extends State<SignUpView> {
 
               Padding(
                 padding: const EdgeInsets.fromLTRB(16,8,16,8),
-                child: PrimaryTextfield(controller: passwordController, label: "Password",obscureText: true,),
+                child: buildPassword(context),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16,8,16,8),
-                child: PrimaryTextfield(controller: passwordConfirmController, label: "Confirm Password",obscureText: true,),
+                child: buildConfirmPassword(context),
               ),
+              passwordError ?
+              const Text("Password doesn't match",style: TextStyle(color: kErrorColor),) : Container(),
               const SizedBox(height: 30.0,),
               PrimaryLoadingButton(buttonName: "Sign Up",isProcessing: isLoading,onTap: () async {
                 setState(() {
@@ -211,7 +215,6 @@ class _SignUpViewState extends State<SignUpView> {
             country = value;
           });
           setCountryCode(value);
-          logger.i(countryCode);
         },
 
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -237,6 +240,86 @@ class _SignUpViewState extends State<SignUpView> {
         iconEnabledColor: kBodyTextColor,
       ));
 
+  Widget buildConfirmPassword(BuildContext context) => TextField(
+    textCapitalization: TextCapitalization.none,
+    onChanged: (value)  {
+      if(value != passwordController.text){
+        setState(() {
+          passwordError = true;
+        });
+      }else{
+        setState(() {
+          passwordError = false;
+        });
+      }
+    },
+    autocorrect: false,
+    enableSuggestions: false,
+    keyboardType: TextInputType.text,
+    controller: passwordConfirmController,
+    obscureText: obscureText ,
+    style: const TextStyle(
+      color: Colors.black,
+      fontSize: 20,
+    ),
+    decoration: InputDecoration(
+      suffixIcon: IconButton(
+          icon: Icon(
+              obscureText ? Icons.visibility : Icons.visibility_off),
+          onPressed: () {
+            setState(() {
+              obscureText = !obscureText;
+            });
+          }),
+      hintText: "Confirm Password",
+      hintStyle: const TextStyle(color: Colors.grey),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: passwordError ? kErrorColor : kBodyTextColor),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(
+          color: passwordError ? kErrorColor : Theme.of(context).primaryColor,
+        ),
+      ),
+    ),
+  );
+
+  Widget buildPassword(BuildContext context) => TextField(
+    textCapitalization: TextCapitalization.none,
+    autocorrect: false,
+    enableSuggestions: false,
+    keyboardType: TextInputType.text,
+    controller: passwordController,
+    obscureText: obscureText ,
+    style: const TextStyle(
+      color: Colors.black,
+      fontSize: 20,
+    ),
+    decoration: InputDecoration(
+      suffixIcon: IconButton(
+          icon: Icon(
+              obscureText ? Icons.visibility : Icons.visibility_off),
+          onPressed: () {
+            setState(() {
+              obscureText = !obscureText;
+            });
+          }),
+      hintText: "Password",
+      hintStyle: const TextStyle(color: Colors.grey),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: kBodyTextColor),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(
+          color: Theme.of(context).primaryColor,
+        ),
+      ),
+    ),
+  );
 
   Future<List<dynamic>> getCounty() async {
     _country.clear();
@@ -257,7 +340,6 @@ class _SignUpViewState extends State<SignUpView> {
       setState(() {
         countryCode = _countryMap[country];
       });
-      logger.i(countryCode);
     }
 
   }
@@ -265,7 +347,6 @@ class _SignUpViewState extends State<SignUpView> {
   //Creating a map that consist of
   void countryList(List<dynamic> itemList) {
     for (var i = 0; i < itemList.length; i++){
-      logger.i(itemList[i].name);
       _countryMap[itemList[i].name] = itemList[i].code;
     }
   }
@@ -273,7 +354,6 @@ class _SignUpViewState extends State<SignUpView> {
   //Create list of counties to display on the drop down
   void countryNameList(List<dynamic> itemList) {
     for (var i = 0; i < itemList.length; i++){
-      logger.i(itemList[i].name);
       _country.add(itemList[i].name);
     }
   }
