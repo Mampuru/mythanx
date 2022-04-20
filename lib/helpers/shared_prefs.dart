@@ -14,7 +14,11 @@ Future<void> setAuth(bool hasToken) async {
 Future<bool> getAuth() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool token = prefs.getBool('authToken');
-  return token;
+  if(token == null){
+    return false;
+  }else{
+    return token;
+  }
 }
 
 Future<String> getAuthToken() async {
@@ -43,12 +47,12 @@ Future<void> setUserName(String username) async {
 Future<void> setUserDetails(User user) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   String stringUser = userToJson(user);
-  await preferences.setString('userDetail',stringUser);
+  await preferences.setString('userDetails',stringUser);
 }
 
 Future<User> getUserDetails() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
-  String stingUser = preferences.getString('userDetails');
-  User object = userFromJson(stingUser);
+  String stringUser =  preferences.getString('userDetails');
+  User object = userFromJson(stringUser);
   return object;
 }

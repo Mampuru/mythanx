@@ -10,7 +10,9 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     getToken();
+    getUserData();
     super.onInit();
+
   }
 
   clearAuthToken() {
@@ -25,8 +27,12 @@ class AuthController extends GetxController {
       }
     }
 
+  void getAuthMethod() async {
+    hasToken.value = await getAuth();
+  }
+
   Future<User> getUserData() async {
-    userDetails = await getUserDetails();
+    userDetails ??= await getUserDetails();
     return userDetails;
   }
 }

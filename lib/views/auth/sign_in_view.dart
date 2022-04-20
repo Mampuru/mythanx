@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mythanx/api/api_service.dart';
+import 'package:mythanx/controllers/auth_controller.dart';
 import 'package:mythanx/helpers/shared_prefs.dart';
 import 'package:mythanx/views/auth/sign_up_view.dart';
 import 'package:mythanx/views/widgets/primary_loading_button.dart';
@@ -20,6 +22,16 @@ class _SignInViewState extends State<SignInView> {
   final userController = TextEditingController();
   final passwordController = TextEditingController();
   bool isLoading = false;
+  final AuthController authController = Get.put(AuthController());
+
+  @override
+  void initState() {
+    authController.getAuthMethod();
+    if(authController.hasToken.value == true){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()));
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +75,7 @@ class _SignInViewState extends State<SignInView> {
                          setUserDetails(result),
                          setAuth(true),
                          setAuthToken(result.data.token),
+                         authController.userDetails = result,
                          setState(() {
                            isLoading = false;
                          }),

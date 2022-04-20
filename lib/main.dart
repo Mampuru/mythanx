@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mythanx/constants.dart';
+import 'package:mythanx/helpers/shared_prefs.dart';
 import 'package:mythanx/views/auth/sign_in_view.dart';
 import 'package:mythanx/views/independent_views/home_view.dart';
 
 import 'controllers/auth_controller.dart';
 
-void main() {
+// bool hasToken = false;
+
+Future<void> main() async {
   Get.put(AuthController());
+  // hasToken = await getAuth();
+
   runApp(const MyApp());
 }
 
@@ -23,8 +29,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    super.initState();
+    getIsAuth();
     hasToken = authController.hasToken.value;
+    super.initState();
+    authController.getUserData();
   }
 
   @override
@@ -35,8 +43,15 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: hasToken ? const HomeView() : const SignInView() ,
+      home: hasToken == true ? const HomeView() : const SignInView(),
     );
+  }
+
+  getIsAuth() async{
+    setState(() async {
+      hasToken = await getAuth();
+    });
+
   }
 }
 
