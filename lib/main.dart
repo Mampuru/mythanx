@@ -1,18 +1,21 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mythanx/constants.dart';
 import 'package:mythanx/helpers/shared_prefs.dart';
+import 'package:mythanx/routing/navigation_service.dart';
+import 'package:mythanx/routing/router.dart';
+import 'package:mythanx/routing/routes.dart';
 import 'package:mythanx/views/auth/sign_in_view.dart';
-import 'package:mythanx/views/independent_views/home_view.dart';
 
+import 'constants.dart';
 import 'controllers/auth_controller.dart';
+import 'helpers/locator.dart';
 
-// bool hasToken = false;
+bool hasToken = false;
 
 Future<void> main() async {
   Get.put(AuthController());
-  // hasToken = await getAuth();
-
+  setupLocator();
   runApp(const MyApp());
 }
 
@@ -25,31 +28,59 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final AuthController authController = Get.put(AuthController());
-  bool hasToken;
+  bool hasToken = false;
+  bool isLoading = false;
 
   @override
   void initState() {
     getIsAuth();
-    hasToken = authController.hasToken.value;
-    super.initState();
     authController.getUserData();
+    super.initState();
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'myThanx',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      home: hasToken == true ? const HomeView() : const SignInView(),
+    return isLoading ?
+        const MaterialApp(
+            debugShowCheckedModeBanner: false,
+          color: kSecondaryColor,
+          home: Scaffold(
+            backgroundColor: kSecondaryColor,
+            body: Padding(
+              padding: EdgeInsets.all(100.0),
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  kWhite,
+                ),
+              ),
+            ),
+          )
+        )
+        :
+        MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'myThanx',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: hasToken == true ? routeHome : routeSignIn,
+        navigatorKey: locator<NavigationService>().navigatorKey,
+        onGenerateRoute: generateRoute,
+        onUnknownRoute: (settings) {
+          return MaterialPageRoute(builder: (_) => const SignInView());
+        }
     );
   }
 
   getIsAuth() async{
-    setState(() async {
-      hasToken = await getAuth();
+    setState(() {
+      isLoading = true;
+    });
+    var temp = await getAuth();
+    setState(() {
+      hasToken = temp;
+      isLoading = false;
     });
 
   }

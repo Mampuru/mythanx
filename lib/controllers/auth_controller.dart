@@ -21,18 +21,26 @@ class AuthController extends GetxController {
   }
 
   void getToken() async {
+    try{
       authToken.value = await getAuthToken();
       if(authToken.value != null){
         hasToken.value = true;
       }
+    }catch(e){
+      //
     }
+  }
 
   void getAuthMethod() async {
     hasToken.value = await getAuth();
   }
 
   Future<User> getUserData() async {
-    userDetails ??= await getUserDetails();
+    try {
+      userDetails ??= await getUserDetails();
+    }catch(e){
+      //
+    }
     return userDetails;
   }
 }
