@@ -59,16 +59,16 @@ class _MyAppState extends State<MyApp> {
         )
         :
         MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'myThanx',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        initialRoute: hasToken == true ? routeHome : routeSignIn,
-        navigatorKey: locator<NavigationService>().navigatorKey,
-        onGenerateRoute: generateRoute,
-        onUnknownRoute: (settings) {
-          return MaterialPageRoute(builder: (_) => const SignInView());
+          debugShowCheckedModeBanner: false,
+          title: 'myThanx',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          initialRoute: hasToken == true ? routeHome : routeSignIn,
+          navigatorKey: locator<NavigationService>().navigatorKey,
+          onGenerateRoute: generateRoute,
+          onUnknownRoute: (settings) {
+            return MaterialPageRoute(builder: (_) => const SignInView());
         }
     );
   }

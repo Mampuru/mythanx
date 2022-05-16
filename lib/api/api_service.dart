@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:mythanx/data/dto/country_dto.dart';
 import 'package:mythanx/data/dto/user_dto.dart';
+import 'package:mythanx/data/mapper/products_model.dart';
 import 'package:mythanx/data/mapper/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:mythanx/data/mapper/user_profile_model.dart';
@@ -93,6 +94,27 @@ Future<CountryDto> getCountryList() async {
     } else if (response.statusCode == 401) {
       PrimaryToast().displayToast("Unauthorized", kErrorColor);
       throw Exception('Unauthorized Access: Failed to get country');
+    }
+  } on SocketException {
+    PrimaryToast().displayToast("No Internet connection", kInfoColor);
+    throw Exception('No Internet connection');
+  }
+  return null;
+}
+
+Future<Product> getProducts() async {
+  try {
+    final http.Response response = await http.get(
+      Uri.parse("https://jsonkeeper.com/b/AY25"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+    );
+    if (response.statusCode == 200) {
+      return productFromJson(response.body);
+    } else if (response.statusCode == 401) {
+      PrimaryToast().displayToast("Unauthorized", kErrorColor);
+      throw Exception('Unauthorized Access: Failed to get products');
     }
   } on SocketException {
     PrimaryToast().displayToast("No Internet connection", kInfoColor);

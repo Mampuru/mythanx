@@ -76,6 +76,7 @@ class _FollowListViewState extends State<FollowListView> {
               );
             }else{
               return Column(children: const [
+                SizedBox(height: 200,),
                 Center(
                   child: Text(
                     'No FollowDto yet!',

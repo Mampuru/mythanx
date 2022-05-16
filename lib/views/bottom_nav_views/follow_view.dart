@@ -69,9 +69,10 @@ class _FollowViewState extends State<FollowView> {
             );
           }else{
             return Column(children: const [
+              SizedBox(height: 200,),
               Center(
                 child: Text(
-                  'No FollowDto yet!',
+                  'No Followers yet!',
                   style: TextStyle(fontSize: 24),
                 ),
               ),
