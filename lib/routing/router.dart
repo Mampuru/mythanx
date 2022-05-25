@@ -7,6 +7,7 @@ import 'package:mythanx/views/auth/sign_up_view.dart';
 import 'package:mythanx/views/independent_views/edit_profile_view.dart';
 import 'package:mythanx/views/independent_views/follow_list_view.dart';
 import 'package:mythanx/views/independent_views/home_view.dart';
+import 'package:mythanx/views/independent_views/payment_view.dart';
 
 final AuthController authController = Get.put(AuthController());
 
@@ -22,6 +23,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         return _getPageRoute(const EditProfileView(), settings);
       case routeFollowList:
         return _getPageRoute(const FollowListView(), settings);
+      case routePayment:
+        return _getPageRoute(const PaymentView(), settings);
     }
     return null;
   }

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mythanx/controllers/cart_controller.dart';
 import 'package:mythanx/helpers/shared_prefs.dart';
 import 'package:mythanx/routing/navigation_service.dart';
 import 'package:mythanx/routing/router.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final AuthController authController = Get.put(AuthController());
+  final CartController cartController = Get.put(CartController());
   bool hasToken = false;
   bool isLoading = false;
 
