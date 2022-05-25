@@ -1,4 +1,8 @@
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mythanx/controllers/cart_controller.dart';
+import 'package:mythanx/views/independent_views/payment_view.dart';
 import 'package:mythanx/views/widgets/primary_loading_button.dart';
 
 import '../../constants.dart';
@@ -11,26 +15,102 @@ class CartView extends StatefulWidget {
 }
 
 class _CartViewState extends State<CartView> {
+  CartController cartController = Get.find();
+  var total=0.0;
+
+  @override
+  void initState() {
+    totalPrice(cartController.cart);
+    logger.i(cartController.cart.length);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: const Text("Edit Profile",style: TextStyle(color: kWhite),),
+        title: const Text("Cart",style: TextStyle(color: kWhite),),
 
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Center(child: Text("Cart is Empty",style: TextStyle(fontSize: 30),))
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Obx(() => ListView.builder(
+          itemCount: cartController.cart.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child:  Container(
+                padding: const EdgeInsets.all(8.0),
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                color: Colors.black.withOpacity(0.4),
+                child: Column(
+                  children: [
+                    Text(cartController.cart[index].name, style: const TextStyle(
+                        fontSize: 20, color: Colors.white),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text("R${cartController.cart[index].total}", style: const TextStyle(
+                            fontSize: 16, color: Colors.white),),
+                        IconButton(onPressed: () => {
+                          cartController.removeFromCart(index),
+                          totalPrice(cartController.cart),
+                        }, icon: const Icon(Icons.delete,color: kErrorColor,))
+                      ],
+                    ),
+
+                  ],
+                ),
+              ),
+            );
+          },
+        ))
         ),
-        bottomSheet: Padding(
-          padding: const EdgeInsets.fromLTRB(48.0,0,16.0,16.0),
-          child: PrimaryLoadingButton(
-          buttonName: "Checkout",
-          onTap: () async {
-            /// Add endpoint to place order
-          }),
-        ),
+        bottomSheet: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              const SizedBox(
+                width: 20.0,
+              ),
+              const Text("Total :",style: TextStyle(fontSize: 15,color: kPrimaryColor,fontWeight: FontWeight.bold )),
+              Text("$total",style: const TextStyle(fontSize: 15,color: kPrimaryColor,fontWeight: FontWeight.bold )),
+            ],
+          ),
+          const SizedBox(
+            height: 5.0,
+          ),
+          PrimaryLoadingButton(
+              buttonName: "Checkout",
+              onTap: () async {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const PaymentView()));
+              }),
+          const SizedBox(
+            height: 10.0,
+          )
+        ],
+      ),
     );
+  }
+
+  totalPrice(List list) {
+    var priceList = [];
+    if(list.isNotEmpty){
+      for (var element in list) {
+        priceList.add(element.total);
+      }
+      setState(() {
+        total = priceList.reduce((value, element) => value + element);
+      });
+    }else if(list.isEmpty){
+      setState(() {
+        total = 0.0;
+      });
+    }
   }
 }
