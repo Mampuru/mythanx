@@ -37,51 +37,106 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
       ),
       body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(widget.productItem.name,style: const TextStyle(fontSize: 30,color: kPrimaryColor,fontWeight: FontWeight.bold )),
-              ),
-              Text(widget.productItem.description,style: const TextStyle(fontSize: 17,)),
-              const SizedBox(
-                height: 20.0,
-              ),
-              widget.productItem.lineItem.isEmpty ?
-              Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Please enter the amount you would like purchase"),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: PrimaryTextfield(controller: amountController, label: "Amount",textInputType: TextInputType.number,),
-                  ),
-                ],
-              ):
-              SizedBox(
-                height: MediaQuery.of(context).size.height/1.8,
-                child: ListView.builder(
-                    itemCount: widget.productItem.lineItem.length,
-                    itemBuilder: (BuildContext context, int index){
-                     final lineItem = widget.productItem.lineItem[index];
-                     return Card(
-                       child: ListTile(
-                         onTap: () {
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(widget.productItem.name,style: const TextStyle(fontSize: 30,color: kPrimaryColor,fontWeight: FontWeight.bold )),
+                ),
+                Text(widget.productItem.description,style: const TextStyle(fontSize: 17,)),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                widget.productItem.lineItem.isEmpty ?
+                Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Please enter the amount you would like purchase"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: PrimaryTextfield(controller: amountController, label: "Amount",textInputType: TextInputType.number,),
+                    ),
+                  ],
+                ):
+                SizedBox(
+                  height: MediaQuery.of(context).size.height/1.8,
+                  child: ListView.builder(
+                      itemCount: widget.productItem.lineItem.length,
+                      itemBuilder: (BuildContext context, int index){
+                       final lineItem = widget.productItem.lineItem[index];
+                       return Card(
+                         child: ListTile(
+                           onTap: () {
+                             showDialog(context: context, builder:(BuildContext context){
+                               return Dialog(
+                                 elevation: 0,
+                                 alignment: Alignment.center,
+                                 child: Column(
+                                   mainAxisSize: MainAxisSize.min,
+                                   children: [
+                                     const SizedBox(height: 20.0,),
+                                     Padding(
+                                       padding: const EdgeInsets.fromLTRB(24,16,24,8),
+                                       child: Text("How much ${lineItem.name} bundles do you wish to purchase",style: const TextStyle(color: kCharcoal,fontWeight: FontWeight.bold,fontSize: 20)),
+                                     ),
+                                     const SizedBox(height: 20.0,),
+                                     Padding(
+                                       padding: const EdgeInsets.all(8.0),
+                                       child: PrimaryTextfield(label:"e.g 570",controller: amountController,textInputType: TextInputType.number,),
+                                     ),
+                                     const SizedBox(height: 20.0,),
+                                     Row(
+                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                       children: [
+                                         InkWell(
+                                           radius: 40.0,
+                                           onTap: () {
+                                             amountController.clear();
+                                             Navigator.pop(context);
+                                           },
+                                           child: const Text("CANCEL",style: TextStyle(color: kErrorColor),),
+                                         ),
+                                         InkWell(
+                                             radius: 40.0,
+                                             onTap: () async {
+                                                  setState(() {
+                                                    lineItem.quantity = int.parse(amountController.text);
+                                                    lineItem.total = findSubTotal(int.parse(amountController.text),100.00);
+                                                  });
 
-                         },
-                         title: Text(lineItem.name),
-                         subtitle: Text("Qty: ${lineItem.quantity}"),
-                       ),
-                     );
-                }),
-              ),
-              const SizedBox(
-                height: 50.0,
-              ),
+                                                  overallTotal(widget.productItem.lineItem);
 
-            ],
+                                                  setState(() {
+                                                    total = overallTotal(widget.productItem.lineItem);
+                                                  });
+                                                  amountController.clear();
+                                                  Navigator.pop(context);
+                                             },
+                                             child: const Text("ACCEPT",style: TextStyle(color: kSuccessColor),)
+                                         ),
+                                       ],
+                                     ),
+                                     const SizedBox(height: 20.0,),
+                                   ],
+                                 ),
+                               );
+                             });
+                           },
+                           title: Text(lineItem.name),
+                           subtitle: Text("Qty: ${lineItem.quantity}"),
+                         ),
+                       );
+                  }),
+                ),
+                const SizedBox(
+                  height: 50.0,
+                ),
+
+              ],
+            ),
           )
       ),
       bottomSheet: Column(
@@ -122,7 +177,24 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     item.lineItems = productItem.lineItem;
     item.total = subtotal;
 
-    cartController.addToCart(item);
+    logger.i(productItem.lineItem);
 
+    // cartController.addToCart(item);
+
+  }
+
+  //calculating the total for the lineItem bundle
+  double findSubTotal(int quantity,double price){
+    double subtotal;
+    subtotal = quantity*price;
+    return subtotal;
+  }
+
+  double overallTotal(List<LineItem> list){
+    double overTotal;
+    for(var item in list){
+      // overTotal = overTotal + item.total;
+    }
+    return overTotal;
   }
 }

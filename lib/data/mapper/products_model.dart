@@ -70,18 +70,21 @@ class LineItem {
     this.name,
     this.quantity,
     this.amount,
+    this.total,
   });
 
   String id;
   String name;
   int quantity;
   double amount;
+  double total;
 
   factory LineItem.fromJson(Map<String, dynamic> json) => LineItem(
     id: json["id"],
     name: json["name"],
     quantity: json["quantity"],
     amount: json["amount"],
+    total: json["total"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -89,5 +92,6 @@ class LineItem {
     "name": name,
     "quantity": quantity,
     "amount": amount,
+    "total": total,
   };
 }

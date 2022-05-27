@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mythanx/views/widgets/primary_button.dart';
-import 'package:mythanx/views/widgets/primary_loading_button.dart';
 
 import '../../constants.dart';
 
@@ -51,14 +50,6 @@ class _PaymentViewState extends State<PaymentView> {
           )
 
       ),
-      // bottomSheet: Padding(
-      //   padding: const EdgeInsets.fromLTRB(48.0,0,16.0,16.0),
-      //   child: PrimaryLoadingButton(
-      //       buttonName: "Checkout",
-      //       onTap: () async {
-      //         /// Add endpoint to place order
-      //       }),
-      // ),
     );
   }
 }
