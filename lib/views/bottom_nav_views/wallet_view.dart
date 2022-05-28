@@ -26,7 +26,7 @@ class _WalletViewState extends State<WalletView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              color: kSecondaryColor,
+              shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
                 child: Padding(
@@ -34,8 +34,8 @@ class _WalletViewState extends State<WalletView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text("Subscriptions",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
-                      Text("Balance: 0.0",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Subscriptions",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
                   ),
                 ),
@@ -45,7 +45,7 @@ class _WalletViewState extends State<WalletView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              color: kSecondaryColor,
+              shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
                 child: Padding(
@@ -53,8 +53,8 @@ class _WalletViewState extends State<WalletView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text("Rewards",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
-                      Text("Balance: 0.0",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Rewards",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
                   ),
                 ),
@@ -64,7 +64,7 @@ class _WalletViewState extends State<WalletView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              color: kSecondaryColor,
+              shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
                 child: Padding(
@@ -72,8 +72,8 @@ class _WalletViewState extends State<WalletView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text("Rewards Bundle",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
-                      Text("Balance: 0.0",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Rewards Bundle",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
                   ),
                 ),
@@ -83,7 +83,7 @@ class _WalletViewState extends State<WalletView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              color: kSecondaryColor,
+              shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
                 child: Padding(
@@ -91,8 +91,8 @@ class _WalletViewState extends State<WalletView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text("Donations",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
-                      Text("Balance: 0.0",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Donations",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
                   ),
                 ),
@@ -102,7 +102,7 @@ class _WalletViewState extends State<WalletView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              color: kSecondaryColor,
+              shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
                 child: Padding(
@@ -110,8 +110,8 @@ class _WalletViewState extends State<WalletView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text("Add Funds",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
-                      Text("Balance: 0.0",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Add Funds",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
                   ),
                 ),
@@ -121,7 +121,7 @@ class _WalletViewState extends State<WalletView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              color: kSecondaryColor,
+              shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
                 child: Padding(
@@ -129,8 +129,8 @@ class _WalletViewState extends State<WalletView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text("Vouchers",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
-                      Text("Balance: 0.0",style: TextStyle(color: kWhite,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Vouchers",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
+                      Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
                   ),
                 ),

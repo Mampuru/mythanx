@@ -19,8 +19,9 @@ class ProductDetailsView extends StatefulWidget {
 class _ProductDetailsViewState extends State<ProductDetailsView> {
   CartController cartController = Get.find();
   final amountController = TextEditingController();
-  double total = 0.0;
+  double total = 0.00;
   int counter = 0;
+  var sum = {};
 
   @override
   void initState() {
@@ -105,12 +106,11 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                                   setState(() {
                                                     lineItem.quantity = int.parse(amountController.text);
                                                     lineItem.total = findSubTotal(int.parse(amountController.text),100.00);
+                                                    sum[lineItem.id] = lineItem.total;
                                                   });
 
-                                                  overallTotal(widget.productItem.lineItem);
-
                                                   setState(() {
-                                                    total = overallTotal(widget.productItem.lineItem);
+                                                    total = overallTotal();
                                                   });
                                                   amountController.clear();
                                                   Navigator.pop(context);
@@ -157,7 +157,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           PrimaryLoadingButton(
               buttonName: "Add to Cart",
               onTap: () async {
-               await addToCart(widget.productItem,double.parse(amountController.text));
+                widget.productItem.lineItem.isEmpty ?
+               await addToCart(widget.productItem,double.parse(amountController.text)) :
+                await addToCart(widget.productItem,total);
                PrimaryToast().displayToast("Item added to Cart", kInfoColor);
               }),
           const SizedBox(
@@ -177,10 +179,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     item.lineItems = productItem.lineItem;
     item.total = subtotal;
 
-    logger.i(productItem.lineItem);
-
-    // cartController.addToCart(item);
-
+    cartController.addToCart(item);
   }
 
   //calculating the total for the lineItem bundle
@@ -190,11 +189,11 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     return subtotal;
   }
 
-  double overallTotal(List<LineItem> list){
-    double overTotal;
-    for(var item in list){
-      // overTotal = overTotal + item.total;
-    }
+  double overallTotal(){
+    double overTotal = 0.00;
+    sum.forEach((key, value) {
+      overTotal = overTotal + value;
+    });
     return overTotal;
   }
 }

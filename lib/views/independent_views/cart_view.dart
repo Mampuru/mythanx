@@ -16,12 +16,11 @@ class CartView extends StatefulWidget {
 
 class _CartViewState extends State<CartView> {
   CartController cartController = Get.find();
-  var total=0.0;
+  var total=0.00;
 
   @override
   void initState() {
     totalPrice(cartController.cart);
-    logger.i(cartController.cart.length);
     super.initState();
   }
 
@@ -41,21 +40,25 @@ class _CartViewState extends State<CartView> {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child:  Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: kSecondaryColor,
+                  ),
+                ),
                 padding: const EdgeInsets.all(8.0),
                 width: MediaQuery
                     .of(context)
                     .size
                     .width,
-                color: Colors.black.withOpacity(0.4),
                 child: Column(
                   children: [
                     Text(cartController.cart[index].name, style: const TextStyle(
-                        fontSize: 20, color: Colors.white),),
+                        fontSize: 20, color: kPrimaryColor),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text("R${cartController.cart[index].total}", style: const TextStyle(
-                            fontSize: 16, color: Colors.white),),
+                            fontSize: 16, color: kBodyTextColor),),
                         IconButton(onPressed: () => {
                           cartController.removeFromCart(index),
                           totalPrice(cartController.cart),
@@ -109,7 +112,7 @@ class _CartViewState extends State<CartView> {
       });
     }else if(list.isEmpty){
       setState(() {
-        total = 0.0;
+        total = 0.00;
       });
     }
   }
