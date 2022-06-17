@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mythanx/views/payment_views/payfast_webview.dart';
 import 'package:mythanx/views/widgets/primary_button.dart';
 
 import '../../constants.dart';
@@ -30,8 +31,11 @@ class _PaymentViewState extends State<PaymentView> {
                 const SizedBox(
                   height: 50.0,
                 ),
-                PrimaryButton(buttonColor: kErrorColor,buttonName: "Pay Fast", onTap: () {
-
+                PrimaryButton(buttonColor: kErrorColor,buttonName: "Pay Fast", onTap: ()   {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PayFastWebView()),
+                  );
                 }),
                 const SizedBox(
                   height: 20.0,
