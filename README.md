@@ -4,7 +4,7 @@
 
 Flutter mobile app for thanX
 
-Rewards application uses can:
+Rewards application that allows users to:
 - view available points.
 - purchase vouchers.
 - redeem vouchers.
