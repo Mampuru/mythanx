@@ -6,8 +6,8 @@ String countryDtoToJson(CountryDto data) => json.encode(data.toJson());
 
 class CountryDto {
   CountryDto({
-    this.message,
-    this.data,
+    required this.message,
+    required this.data,
   });
 
   String message;
@@ -32,10 +32,10 @@ class Datum {
     this.phone,
   });
 
-  int id;
-  String name;
-  String code;
-  String phone;
+  int? id;
+  String? name;
+  String? code;
+  String? phone;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"],

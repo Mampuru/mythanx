@@ -5,5 +5,5 @@ class CartItem {
   int quantity;
   List<dynamic> lineItems;
 
-  CartItem({this.sku,this.name, this.quantity, this.lineItems ,this.total});
+  CartItem({required this.sku,required this.name, required this.quantity, required this.lineItems ,required this.total});
 }

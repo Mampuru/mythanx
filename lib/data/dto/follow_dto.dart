@@ -14,12 +14,12 @@ class FollowDto {
     this.follower,
   });
 
-  String id;
-  String name;
-  String image;
-  String username;
-  bool follow;
-  bool follower;
+  String? id;
+  String? name;
+  String? image;
+  String? username;
+  bool? follow;
+  bool? follower;
 
   factory FollowDto.fromJson(Map<String, dynamic> json) => FollowDto(
     id: json["id"],

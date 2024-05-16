@@ -14,12 +14,12 @@ class UserDto {
     this.password,
   });
 
-  String name;
-  String username;
-  String email;
-  String phone;
-  String country;
-  String password;
+  String? name;
+  String? username;
+  String? email;
+  String? phone;
+  String? country;
+  String? password;
 
   factory UserDto.fromJson(Map<String, dynamic> json) => UserDto(
     name: json["name"],

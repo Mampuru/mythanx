@@ -6,8 +6,8 @@ String productToJson(Product data) => json.encode(data.toJson());
 
 class Product {
   Product({
-    this.message,
-    this.data,
+    required this.message,
+    required this.data,
   });
 
   String message;
@@ -35,13 +35,13 @@ class Datum {
     this.lineItem,
   });
 
-  DateTime createdAt;
-  DateTime updatedAt;
-  String name;
-  String sku;
-  String description;
-  double amount;
-  List<LineItem> lineItem;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? name;
+  String? sku;
+  String? description;
+  double? amount;
+  List<LineItem>? lineItem;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     createdAt: DateTime.parse(json["created_at"]),
@@ -54,13 +54,13 @@ class Datum {
   );
 
   Map<String, dynamic> toJson() => {
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
+    "created_at": createdAt!.toIso8601String(),
+    "updated_at": updatedAt!.toIso8601String(),
     "name": name,
     "sku": sku,
     "description": description,
     "amount": amount,
-    "line_item": List<dynamic>.from(lineItem.map((x) => x.toJson())),
+    "line_item": List<dynamic>.from(lineItem!.map((x) => x.toJson())),
   };
 }
 
@@ -73,11 +73,11 @@ class LineItem {
     this.total,
   });
 
-  String id;
-  String name;
-  int quantity;
-  double amount;
-  double total;
+  String? id;
+  String? name;
+  int? quantity;
+  double? amount;
+  double? total;
 
   factory LineItem.fromJson(Map<String, dynamic> json) => LineItem(
     id: json["id"],
