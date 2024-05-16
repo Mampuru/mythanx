@@ -13,7 +13,7 @@ import 'package:mythanx/views/widgets/primary_toast.dart';
 import '../constants.dart';
 import 'api_config.dart';
 
-Future<User> register(UserDto user) async {
+Future<User?> register(UserDto user) async {
   try {
     final http.Response response = await http.post(
       Uri.parse(signUp),
@@ -36,7 +36,7 @@ Future<User> register(UserDto user) async {
   return null;
 }
 
-Future<User> login(String username,password) async {
+Future<User?> login(String username,password) async {
   try {
     final http.Response response = await http.post(
         Uri.parse(signIn),
@@ -59,7 +59,7 @@ Future<User> login(String username,password) async {
   return null;
 }
 
-Future<UserProfile> getUser(String apiKey) async {
+Future<UserProfile?> getUser(String apiKey) async {
   try {
     final http.Response response = await http.get(
         Uri.parse(signUp),
@@ -81,7 +81,7 @@ Future<UserProfile> getUser(String apiKey) async {
   return null;
 }
 
-Future<CountryDto> getCountryList() async {
+Future<CountryDto?> getCountryList() async {
   try {
     final http.Response response = await http.get(
         Uri.parse(getCountry),
@@ -102,7 +102,7 @@ Future<CountryDto> getCountryList() async {
   return null;
 }
 
-Future<Product> getProducts() async {
+Future<Product?> getProducts() async {
   try {
     final http.Response response = await http.get(
       Uri.parse("https://jsonkeeper.com/b/AY25"),
