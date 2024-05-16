@@ -12,7 +12,7 @@ import '../../constants.dart';
 import '../independent_views/home_view.dart';
 
 class SignInView extends StatefulWidget {
-  const SignInView({Key key}) : super(key: key);
+  const SignInView({Key? key}) : super(key: key);
 
   @override
   _SignInViewState createState() => _SignInViewState();

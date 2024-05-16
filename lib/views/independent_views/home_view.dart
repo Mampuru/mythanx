@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mythanx/views/bottom_nav_views/follow_view.dart';
 import 'package:mythanx/views/bottom_nav_views/search_view.dart';
 import 'package:mythanx/views/bottom_nav_views/store_view.dart';
 import '../../constants.dart';
@@ -8,7 +7,7 @@ import '../bottom_nav_views/wallet_view.dart';
 import 'cart_view.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key key}) : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   _HomeViewState createState() => _HomeViewState();

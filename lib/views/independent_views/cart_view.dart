@@ -8,7 +8,7 @@ import 'package:mythanx/views/widgets/primary_loading_button.dart';
 import '../../constants.dart';
 
 class CartView extends StatefulWidget {
-  const CartView({Key key}) : super(key: key);
+  const CartView({Key? key}) : super(key: key);
 
   @override
   _CartViewState createState() => _CartViewState();

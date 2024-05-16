@@ -5,7 +5,7 @@ import 'package:mythanx/views/widgets/primary_textfield.dart';
 import '../../constants.dart';
 
 class EditProfileView extends StatefulWidget {
-  const EditProfileView({Key key}) : super(key: key);
+  const EditProfileView({Key? key}) : super(key: key);
 
   @override
   _EditProfileViewState createState() => _EditProfileViewState();

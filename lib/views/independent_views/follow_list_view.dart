@@ -6,7 +6,7 @@ import '../../constants.dart';
 
 class FollowListView extends StatefulWidget {
   final String title;
-  const FollowListView({Key key,this.title}) : super(key: key);
+  const FollowListView({Key? key,required this.title}) : super(key: key);
 
   @override
   _FollowListViewState createState() => _FollowListViewState();
@@ -14,7 +14,7 @@ class FollowListView extends StatefulWidget {
 
 class _FollowListViewState extends State<FollowListView> {
   List<FollowDto> followDtoItems = [];
-  Future _getFollowDto;
+  late Future _getFollowDto;
 
   @override
   void initState() {
@@ -75,7 +75,7 @@ class _FollowListViewState extends State<FollowListView> {
                 ],
               );
             }else{
-              return Column(children: const [
+              return const Column(children: [
                 SizedBox(height: 200,),
                 Center(
                   child: Text(

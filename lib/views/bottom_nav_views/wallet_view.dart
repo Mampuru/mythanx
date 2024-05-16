@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 
 class WalletView extends StatefulWidget {
-  const WalletView({Key key}) : super(key: key);
+  const WalletView({Key? key}) : super(key: key);
 
   @override
   _WalletViewState createState() => _WalletViewState();

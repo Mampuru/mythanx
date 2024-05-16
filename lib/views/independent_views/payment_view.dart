@@ -5,7 +5,7 @@ import 'package:mythanx/views/widgets/primary_button.dart';
 import '../../constants.dart';
 
 class PaymentView extends StatefulWidget {
-  const PaymentView({Key key}) : super(key: key);
+  const PaymentView({Key? key}) : super(key: key);
 
   @override
   _PaymentViewState createState() => _PaymentViewState();

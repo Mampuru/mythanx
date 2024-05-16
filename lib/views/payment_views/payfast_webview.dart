@@ -8,7 +8,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import '../../constants.dart';
 
 class PayFastWebView extends StatefulWidget {
-  const PayFastWebView({Key key}) : super(key: key);
+  const PayFastWebView({Key? key}) : super(key: key);
 
   @override
   _PayFastWebViewState createState() => _PayFastWebViewState();

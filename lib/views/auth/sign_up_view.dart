@@ -17,7 +17,7 @@ var _country = [];
 var _countryMap = {};
 
 class SignUpView extends StatefulWidget {
-  const SignUpView({Key key}) : super(key: key);
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
   _SignUpViewState createState() => _SignUpViewState();
@@ -31,8 +31,8 @@ class _SignUpViewState extends State<SignUpView> {
   final phoneController = TextEditingController();
   final countryController = TextEditingController();
   final emailController = TextEditingController();
-  String country;
-  String countryCode;
+  late String country;
+  late String countryCode;
   ContactOption _character = ContactOption.phone;
   bool isLoading = false;
   bool obscureText = true;
@@ -206,9 +206,9 @@ class _SignUpViewState extends State<SignUpView> {
             .toList(),
         onChanged: (value) async {
           setState(() {
-            country = value;
+            country = value!;
           });
-          setCountryCode(value);
+          setCountryCode(value!);
         },
 
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -315,7 +315,7 @@ class _SignUpViewState extends State<SignUpView> {
     ),
   );
 
-  Future<List<dynamic>> getCounty() async {
+  Future<List<dynamic>?> getCounty() async {
     _country.clear();
     CountryDto result = await getCountryList();
     countryNameList(result.data);

@@ -5,7 +5,7 @@ import 'package:mythanx/views/widgets/primary_button_outlined.dart';
 import '../../constants.dart';
 
 class FollowView extends StatefulWidget {
-  const FollowView({Key key}) : super(key: key);
+  const FollowView({Key? key}) : super(key: key);
 
   @override
   _FollowViewState createState() => _FollowViewState();
@@ -13,7 +13,7 @@ class FollowView extends StatefulWidget {
 
 class _FollowViewState extends State<FollowView> {
   List<FollowDto> followDtoItems = [];
-  Future _getFollowDto;
+  late Future _getFollowDto;
 
   @override
   void initState() {

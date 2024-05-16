@@ -10,7 +10,7 @@ import '../../constants.dart';
 
 class ProductDetailsView extends StatefulWidget {
   final Datum productItem;
-  const ProductDetailsView({Key key ,this.productItem}) : super(key: key);
+  const ProductDetailsView({Key? key ,required this.productItem}) : super(key: key);
 
   @override
   _ProductDetailsViewState createState() => _ProductDetailsViewState();
@@ -58,7 +58,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: PrimaryTextfield(controller: amountController, label: "Amount",textInputType: TextInputType.number,),
+                      child: PrimaryTextfield(controller: amountController, label: "Amount",textInputType: TextInputType.number, obscureText: false,),
                     ),
                   ],
                 ):

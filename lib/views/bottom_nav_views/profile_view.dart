@@ -8,7 +8,7 @@ import 'package:mythanx/views/widgets/primary_button_outlined.dart';
 import '../../constants.dart';
 
 class ProfileView extends StatefulWidget {
-  const ProfileView({Key key}) : super(key: key);
+  const ProfileView({Key? key}) : super(key: key);
 
   @override
   _ProfileViewState createState() => _ProfileViewState();

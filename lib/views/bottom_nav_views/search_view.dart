@@ -3,7 +3,7 @@ import 'package:mythanx/views/bottom_nav_views/follow_view.dart';
 import 'package:mythanx/views/widgets/primary_textfield.dart';
 
 class SearchView extends StatefulWidget {
-  const SearchView({Key key}) : super(key: key);
+  const SearchView({Key? key}) : super(key: key);
 
   @override
   _SearchViewState createState() => _SearchViewState();

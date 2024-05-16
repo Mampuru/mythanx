@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mythanx/api/api_service.dart';
 import 'package:mythanx/data/mapper/products_model.dart';
 import 'package:mythanx/views/independent_views/product_details_view.dart';
-import 'package:mythanx/views/widgets/primary_button.dart';
 
 import '../../constants.dart';
 
 class StoreView extends StatefulWidget {
-  const StoreView({Key key}) : super(key: key);
+  const StoreView({Key? key}) : super(key: key);
 
   @override
   _StoreViewState createState() => _StoreViewState();
@@ -15,7 +14,7 @@ class StoreView extends StatefulWidget {
 
 class _StoreViewState extends State<StoreView> {
   List<Datum> productItems = [];
-  Future _getStoreProducts;
+  late Future _getStoreProducts;
   
   @override
   void initState() {
