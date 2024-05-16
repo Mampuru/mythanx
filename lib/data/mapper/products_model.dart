@@ -26,22 +26,22 @@ class Product {
 
 class Datum {
   Datum({
-    this.createdAt,
-    this.updatedAt,
-    this.name,
-    this.sku,
-    this.description,
-    this.amount,
-    this.lineItem,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.name,
+    required this.sku,
+    required this.description,
+    required this.amount,
+    required this.lineItem,
   });
 
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  String? name;
-  String? sku;
-  String? description;
-  double? amount;
-  List<LineItem>? lineItem;
+  DateTime createdAt;
+  DateTime updatedAt;
+  String name;
+  String sku;
+  String description;
+  double amount;
+  List<LineItem> lineItem;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     createdAt: DateTime.parse(json["created_at"]),
