@@ -94,9 +94,9 @@ class _SignUpViewState extends State<SignUpView> {
                         leading: Radio<ContactOption>(
                           value: ContactOption.phone,
                           groupValue: _character,
-                          onChanged: (ContactOption value) {
+                          onChanged: (ContactOption? value) {
                             setState(() {
-                              _character = value;
+                              _character = value!;
                             });
                           },
                         ),
@@ -109,9 +109,9 @@ class _SignUpViewState extends State<SignUpView> {
                         leading: Radio<ContactOption>(
                           value: ContactOption.email,
                           groupValue: _character,
-                          onChanged: (ContactOption value) {
+                          onChanged: (ContactOption? value) {
                             setState(() {
-                              _character = value;
+                              _character = value!;
                             });
                           },
                         ),
@@ -156,7 +156,7 @@ class _SignUpViewState extends State<SignUpView> {
                 );
 
                 await register(user).then((result) => {
-                  if(result.data.token != null){
+                  if(result!.data.token != null){
                     setUserDetails(result),
                     setAuth(true),
                     setAuthToken(result.data.token),
@@ -317,8 +317,8 @@ class _SignUpViewState extends State<SignUpView> {
 
   Future<List<dynamic>?> getCounty() async {
     _country.clear();
-    CountryDto result = await getCountryList();
-    countryNameList(result.data);
+    CountryDto? result = await getCountryList();
+    countryNameList(result!.data);
     countryList(result.data);
     if (_country == null) {
       return null;
