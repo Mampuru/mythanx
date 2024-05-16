@@ -5,15 +5,15 @@ import '../../constants.dart';
 class PrimaryTextfield extends StatelessWidget {
   final TextEditingController controller;
   final String label;
-  final TextInputType textInputType;
-  final bool obscureText;
+  final TextInputType? textInputType;
+  final bool? obscureText;
 
   const PrimaryTextfield({
     Key? key,
     required this.controller,
     required this.label,
-    required this.textInputType,
-    required this.obscureText,
+    this.textInputType,
+    this.obscureText,
   }) : super(key: key);
 
   @override
