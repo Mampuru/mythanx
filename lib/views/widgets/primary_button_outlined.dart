@@ -12,9 +12,9 @@ class PrimaryButtonOutlined extends StatelessWidget {
   final double width;
 
   const PrimaryButtonOutlined({
-    Key key,
-    @required this.buttonName,
-    @required this.onTap,
+    Key? key,
+    required this.buttonName,
+    required this.onTap,
     this.margin = const EdgeInsets.all(0.0),
     this.buttonColor = kWhite ,
     this.textColor = kPrimaryColor,

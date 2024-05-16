@@ -9,11 +9,11 @@ class PrimaryTextfield extends StatelessWidget {
   final bool obscureText;
 
   const PrimaryTextfield({
-    Key key,
-    @required this.controller,
-    @required this.label,
-    this.textInputType,
-    this.obscureText,
+    Key? key,
+    required this.controller,
+    required this.label,
+    required this.textInputType,
+    required this.obscureText,
   }) : super(key: key);
 
   @override

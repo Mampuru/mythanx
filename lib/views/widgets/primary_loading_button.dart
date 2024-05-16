@@ -14,9 +14,9 @@ class PrimaryLoadingButton extends StatelessWidget {
   final bool isProcessing;
 
    const PrimaryLoadingButton({
-     Key key,
-    @required this.buttonName,
-    this.onTap,
+     Key? key,
+    required this.buttonName,
+    required this.onTap,
     this.margin = const EdgeInsets.all(0.0),
     this.buttonColor =  kPrimaryColor,
     this.textColor = kWhite,
