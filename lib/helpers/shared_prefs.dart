@@ -13,7 +13,7 @@ Future<void> setAuth(bool hasToken) async {
 
 Future<bool> getAuth() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool token = prefs.getBool('authToken');
+  bool? token = prefs.getBool('authToken');
   if(token == null){
     return false;
   }else{
@@ -21,9 +21,9 @@ Future<bool> getAuth() async {
   }
 }
 
-Future<String> getAuthToken() async {
+Future<String?> getAuthToken() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
-  String token = preferences.getString('token');
+  String? token = preferences.getString('token');
   return token;
 }
 
@@ -32,9 +32,9 @@ Future<void> setAuthToken(String token) async {
   await preferences.setString('token',token);
 }
 
-Future<String> getUserName() async {
+Future<String?> getUserName() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
-  String name = preferences.getString('name');
+  String? name = preferences.getString('name');
   return name;
 }
 
@@ -52,7 +52,7 @@ Future<void> setUserDetails(User user) async {
 
 Future<User> getUserDetails() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
-  String stringUser =  preferences.getString('userDetails');
-  User object = userFromJson(stringUser);
+  String? stringUser =  preferences.getString('userDetails');
+  User object = userFromJson(stringUser!);
   return object;
 }

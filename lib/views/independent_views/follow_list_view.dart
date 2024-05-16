@@ -5,8 +5,8 @@ import 'package:mythanx/views/widgets/primary_button_outlined.dart';
 import '../../constants.dart';
 
 class FollowListView extends StatefulWidget {
-  final String title;
-  const FollowListView({Key? key,required this.title}) : super(key: key);
+  final String? title;
+  const FollowListView({Key? key,this.title}) : super(key: key);
 
   @override
   _FollowListViewState createState() => _FollowListViewState();
@@ -27,7 +27,7 @@ class _FollowListViewState extends State<FollowListView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: Text(widget.title),
+        title: Text(widget.title!),
         centerTitle: true,
       ),
       body: FutureBuilder(
