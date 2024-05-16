@@ -6,8 +6,8 @@ String userToJson(User data) => json.encode(data.toJson());
 
 class User {
   User({
-    this.message,
-    this.data,
+    required this.message,
+    required this.data,
   });
 
   String message;
@@ -26,8 +26,8 @@ class User {
 
 class Data {
   Data({
-    this.token,
-    this.user,
+    required this.token,
+    required this.user,
   });
 
   String token;
@@ -46,13 +46,13 @@ class Data {
 
 class UserClass {
   UserClass({
-    this.name,
-    this.username,
-    this.country,
-    this.updatedAt,
-    this.createdAt,
-    this.id,
-    this.metadata,
+    required this.name,
+    required this.username,
+    required this.country,
+    required this.updatedAt,
+    required this.createdAt,
+    required this.id,
+    required this.metadata,
   });
 
   String name;
@@ -86,8 +86,8 @@ class UserClass {
 
 class Country {
   Country({
-    this.code,
-    this.name,
+    required this.code,
+    required this.name,
   });
 
   String code;
@@ -106,8 +106,8 @@ class Country {
 
 class Metadata {
   Metadata({
-    this.relationship,
-    this.presence,
+    required this.relationship,
+    required this.presence,
   });
 
   Relationship relationship;
@@ -126,8 +126,8 @@ class Metadata {
 
 class Presence {
   Presence({
-    this.followers,
-    this.following,
+    required this.followers,
+    required this.following,
   });
 
   int followers;
@@ -146,8 +146,8 @@ class Presence {
 
 class Relationship {
   Relationship({
-    this.followed,
-    this.follows,
+    required this.followed,
+    required this.follows,
   });
 
   bool followed;
