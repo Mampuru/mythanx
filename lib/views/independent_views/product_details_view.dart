@@ -125,7 +125,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                );
                              });
                            },
-                           title: Text(lineItem.name),
+                           title: Text(lineItem.name!),
                            subtitle: Text("Qty: ${lineItem.quantity}"),
                          ),
                        );
@@ -172,12 +172,12 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   }
 
   addToCart(Datum productItem,double subtotal){
-    CartItem item = CartItem();
-    item.sku = productItem.sku;
-    item.name = productItem.name;
-    item.quantity = counter;
-    item.lineItems = productItem.lineItem;
-    item.total = subtotal;
+    CartItem item = CartItem(sku: productItem.sku,name: productItem.name,quantity: counter,lineItems: productItem.lineItem, total: subtotal);
+    // item.sku = productItem.sku;
+    // item.name = productItem.name;
+    // item.quantity = counter;
+    // item.lineItems = productItem.lineItem;
+    // item.total = subtotal;
 
     cartController.addToCart(item);
   }

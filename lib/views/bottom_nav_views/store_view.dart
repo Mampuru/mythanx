@@ -92,9 +92,9 @@ class _StoreViewState extends State<StoreView> {
   }
 
   Future<List<dynamic>> getStoreProducts() async {
-    Product result = await getProducts();
+    Product? result = await getProducts();
     setState(() {
-      productItems = result.data;
+      productItems = result!.data;
     });
     return productItems;
   }
