@@ -20,7 +20,7 @@ class _PayFastWebViewState extends State<PayFastWebView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: const Text('My ThanX'),),
+        title: const Text('My ThanX',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),),
       body: InAppWebView(
         initialUrlRequest: URLRequest(
             url: Uri.parse("https://sandbox.payfast.co.za/eng/process"),
