@@ -47,6 +47,7 @@ dependencies:
   #testing
   logger: ^1.1.0
   fluttertoast: ^8.0.7
+  http: ^1.2.0
 
 dev_dependencies:
   hive_generator: ^1.1.2
