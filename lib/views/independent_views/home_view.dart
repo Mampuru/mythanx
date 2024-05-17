@@ -34,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
           leading: const Icon(Icons.build_circle_outlined,size:30,color: Colors.white,),
-          title: const Text('My ThanX'),
+          title: const Text('My ThanX',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
           centerTitle: true,
           actions: [
             InkWell(
