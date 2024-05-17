@@ -67,27 +67,28 @@ class _SignInViewState extends State<SignInView> {
                     )),
                 const SizedBox(height: 30.0,),
                  PrimaryLoadingButton(buttonName: "Sign In",isProcessing: isLoading,onTap: () async {
-                   setState(() {
-                     isLoading = true;
-                   });
-                   await login(userController.text, passwordController.text).then((result) => {
-                       if(result != null){
-                         setUserDetails(result),
-                         setAuth(true),
-                         setAuthToken(result.data.token),
-                         authController.userDetails = result,
-                         setState(() {
-                           isLoading = false;
-                         }),
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()))
-                       }else {
-                         setState(() {
-                           isLoading = false;
-                         }),
-                         PrimaryToast().displayToast("Invalid credentials", kErrorColor)
-                       }
-                     // }
-                   });
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()));
+                   // setState(() {
+                   //   isLoading = true;
+                   // });
+                   // await login(userController.text, passwordController.text).then((result) => {
+                   //     if(result != null){
+                   //       setUserDetails(result),
+                   //       setAuth(true),
+                   //       setAuthToken(result.data.token),
+                   //       authController.userDetails = result,
+                   //       setState(() {
+                   //         isLoading = false;
+                   //       }),
+                   //       Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()))
+                   //     }else {
+                   //       setState(() {
+                   //         isLoading = false;
+                   //       }),
+                   //       PrimaryToast().displayToast("Invalid credentials", kErrorColor)
+                   //     }
+                   //   // }
+                   // });
 
                },),
                 const SizedBox(height: 50.0,),
