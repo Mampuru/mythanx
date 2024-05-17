@@ -29,11 +29,11 @@ class _WalletViewState extends State<WalletView> {
               shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text("Subscriptions",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                       Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
@@ -48,11 +48,11 @@ class _WalletViewState extends State<WalletView> {
               shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text("Rewards",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                       Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
@@ -67,11 +67,11 @@ class _WalletViewState extends State<WalletView> {
               shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text("Rewards Bundle",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                       Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
@@ -86,11 +86,11 @@ class _WalletViewState extends State<WalletView> {
               shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text("Donations",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                       Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
@@ -105,11 +105,11 @@ class _WalletViewState extends State<WalletView> {
               shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text("Add Funds",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                       Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
@@ -124,11 +124,11 @@ class _WalletViewState extends State<WalletView> {
               shadowColor: kSecondaryColor,
               child: SizedBox(
                 width: _width,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text("Vouchers",style: TextStyle(color: kBodyTextColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                       Text("Balance: 0.0",style: TextStyle(color: kPrimaryColor,fontSize: 25.0,fontWeight: FontWeight.bold),),
                     ],
