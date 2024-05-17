@@ -58,7 +58,7 @@ class _FollowViewState extends State<FollowView> {
                               style: const TextStyle(
                                   fontFamily: 'Sora', color: kPrimaryColor)),
                           leading: Image.asset(userIconPath),
-                          trailing: PrimaryButtonOutlined(textColor: kCharcoal,width: 100,height: 28, onTap: () {  }, buttonName: 'Remove',),
+                          trailing: PrimaryButtonOutlined(textColor: kCharcoal,width: 110,height: 28, onTap: () {  }, buttonName: 'Remove',),
                         ),
                       );
                     },
